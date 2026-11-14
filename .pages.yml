@@ -1,0 +1,162 @@
+# Konfiguration für Pages CMS (https://app.pagescms.org)
+# Jede Unterseite hat ein Formular; gespeichert wird in _data/*.yml
+
+media:
+  - name: bilder
+    label: Bilder
+    input: assets/images
+    output: /assets/images
+    categories: [image]
+  - name: videos
+    label: Videos
+    input: assets/videos
+    output: /assets/videos
+    categories: [video]
+
+content:
+  - name: allgemein
+    label: Allgemein (Adresse, Links)
+    type: file
+    path: _data/allgemein.yml
+    format: yaml
+    fields:
+      - { name: strasse, label: Strasse und Nr., type: string }
+      - { name: ort, label: PLZ und Ort, type: string }
+      - { name: telefon, label: Telefon, type: string }
+      - { name: email, label: E-Mail, type: string }
+      - { name: termin_link, label: Link zur Terminbuchung (Hairlist), type: string }
+      - { name: instagram_link, label: Link zu Instagram, type: string }
+      - { name: maps_link, label: Link zu Google Maps, type: string }
+      - { name: oeffnungszeiten, label: Öffnungszeiten (eine Zeile pro Eintrag), type: string, list: true }
+      - { name: fusszeile, label: Kleiner Text unten links auf der Startseite, type: string }
+      - { name: beschreibung, label: Kurzbeschreibung für Google, type: text }
+
+  - name: ueber_uns
+    label: 1 Über uns
+    type: file
+    path: _data/ueber_uns.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - { name: geschichte_gross, label: Geschichte – grosser Satz, type: text }
+      - { name: geschichte_text, label: Geschichte – Text, type: text }
+      - { name: haltung, label: Haltung (Punkte), type: string, list: true }
+
+  - name: preise
+    label: 2 Preise
+    type: file
+    path: _data/preise.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - name: gruppen
+        label: Preisgruppen
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titel}"
+        fields:
+          - { name: titel, label: Name der Gruppe, type: string }
+          - name: eintraege
+            label: Behandlungen
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} – {preis}"
+            fields:
+              - { name: name, label: Behandlung, type: string }
+              - { name: beschreibung, label: Beschreibung (optional), type: string }
+              - { name: preis, label: Preis, type: string }
+
+  - name: termin
+    label: 3 Termin
+    type: file
+    path: _data/termin.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - { name: gross, label: Grosser Satz, type: text }
+      - { name: button, label: Text auf dem Button, type: string }
+      - { name: hinweise, label: Gut zu wissen (Punkte), type: text, list: true }
+
+  - name: team
+    label: 4 Team
+    type: file
+    path: _data/team.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - name: mitglieder
+        label: Teammitglieder
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: rolle, label: Rolle, type: string }
+          - { name: text, label: Text, type: text }
+          - name: video
+            label: Video (kurz, ohne Ton, max. 4 MB)
+            type: file
+            options: { media: videos }
+          - name: bild
+            label: Bild (Vorschau fürs Video oder statt Video)
+            type: image
+            options: { media: bilder }
+
+  - name: studio
+    label: 5 Studio
+    type: file
+    path: _data/studio.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - name: bilder
+        label: Bilder vom Studio
+        type: image
+        list: true
+        options: { media: bilder }
+
+  - name: werde_nageltante
+    label: 6 Werde Nageltante
+    type: file
+    path: _data/werde_nageltante.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - { name: gesucht_gross, label: Wen wir suchen – grosser Satz, type: text }
+      - { name: gesucht_text, label: Wen wir suchen – Text, type: text }
+      - { name: bieten, label: Was wir bieten (Punkte), type: string, list: true }
+      - { name: bewerben_text, label: Bewerben – Text, type: text }
+
+  - name: geschenkkarte
+    label: 7 Geschenkkarte
+    type: file
+    path: _data/geschenkkarte.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - { name: betraege, label: Beträge, type: string, list: true }
+      - { name: ablauf, label: So geht’s (Punkte), type: string, list: true }
+      - { name: button, label: Text auf dem Button, type: string }
+
+  - name: kontakt
+    label: 8 Kontakt
+    type: file
+    path: _data/kontakt.yml
+    format: yaml
+    fields:
+      - { name: titel, label: Titel (auch im Menü), type: string, required: true }
+      - { name: intro, label: Einleitung, type: text }
+      - { name: anfahrt, label: Anfahrt, type: text }

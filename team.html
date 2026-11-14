@@ -1,103 +1,23 @@
-<!DOCTYPE html>
-<html lang="de-CH" class="is-loading is-sub">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Team — Nageltante</title>
-  <meta name="description" content="Team – Nageltante Nagelstudio.">
-  <meta name="theme-color" content="#f7f6f4">
-  <script>try{if(sessionStorage.getItem("nt_seen"))document.documentElement.classList.remove("is-loading")}catch(e){}</script>
-  <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
-  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=202611141214">
-</head>
-<body>
-
-  <!-- Ladescreen -->
-  <div class="loader" aria-hidden="true">
-    <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" class="loader-emblem" width="71" height="57">
-  </div>
-
-  <div class="page">
-
-    <header class="page-header">
-      <a href="index.html" class="home-link" aria-label="Zur Startseite">
-        <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" width="71" height="57">
-        <span>Nageltante</span>
-      </a>
-      <div class="page-header-right">
-        <a href="index.html" class="menu-link">Menü</a>
-        <a href="#" class="btn btn-dark" data-booking>Termin buchen</a>
-      </div>
-    </header>
-
-    <main>
-      <section class="page-hero">
-        <span class="page-num">4</span>
-        <h1>Team</h1>
-        <p class="intro">Die Gesichter hinter Nageltante.</p>
-      </section>
-
+---
+layout: seite
+nummer: 4
+daten: team
+---
+{% assign a = site.data.allgemein %}{% assign d = site.data[page.daten] %}
     <section class="block">
       <h2 class="block-label">Wir sind</h2>
       <div class="block-body">
-        <div class="team">
+        <div class="team">{% for m in d.mitglieder %}
           <article class="member">
-            <div class="media">
-              <video src="assets/videos/meli.mp4" poster="assets/images/meli.jpg" autoplay muted loop playsinline preload="metadata"
-                     onerror="this.replaceWith(Object.assign(document.createElement('img'),{src:'assets/logos/nageltante_emblem_positiv.svg',className:'fallback',alt:''}))"></video>
+            <div class="media">{% if m.video and m.video != "" %}
+              <video src="{{ m.video | remove_first: '/' }}"{% if m.bild and m.bild != "" %} poster="{{ m.bild | remove_first: '/' }}"{% endif %} autoplay muted loop playsinline preload="metadata"></video>{% elsif m.bild and m.bild != "" %}
+              <img src="{{ m.bild | remove_first: '/' }}" alt="{{ m.name | escape }}" loading="lazy">{% else %}
+              <img src="assets/logos/nageltante_emblem_positiv.svg" class="fallback" alt="">{% endif %}
             </div>
-            <h3>Meli</h3>
-            <p class="role">Nail Artist &amp; Gründerin</p>
-            <p>Nageltante ist aus Leidenschaft, Umwegen und Hingabe entstanden. Ich glaube an ehrliches Handwerk, Ästhetik ohne Kitsch und daran, dass Schönheit dann entsteht, wenn man sich Zeit nimmt und sich selbst sein kann.</p>
-          </article>
-          <article class="member">
-            <div class="media">
-              <video src="assets/videos/nanji.mp4" poster="assets/images/nanji.jpg" autoplay muted loop playsinline preload="metadata"
-                     onerror="this.replaceWith(Object.assign(document.createElement('img'),{src:'assets/logos/nageltante_emblem_positiv.svg',className:'fallback',alt:''}))"></video>
-            </div>
-            <h3>Nanji</h3>
-            <p class="role">Nail Artist</p>
-            <p>Mit viel Ruhe und einem Blick fürs Detail kreiere ich gepflegte und elegante Nägel, die deine Persönlichkeit unterstreichen. Bei mir darfst du abschalten und ganz du selbst sein.</p>
-          </article>
-          <article class="member">
-            <div class="media">
-              <video src="assets/videos/yoshi.mp4" poster="assets/images/yoshi.jpg" autoplay muted loop playsinline preload="metadata"
-                     onerror="this.replaceWith(Object.assign(document.createElement('img'),{src:'assets/logos/nageltante_emblem_positiv.svg',className:'fallback',alt:''}))"></video>
-            </div>
-            <h3>Yoshi</h3>
-            <p class="role">Feel-Good Manager</p>
-            <p>Ich heisse Yoshi. Ich mache keine Nägel, aber ohne mich wäre es hier nur halb so cool.</p>
-          </article>
+            <h3>{{ m.name | escape }}</h3>
+            <p class="role">{{ m.rolle | escape }}</p>
+            <p>{{ m.text | escape | newline_to_br }}</p>
+          </article>{% endfor %}
         </div>
       </div>
     </section>
-
-    </main>
-
-    <footer class="page-footer">
-      <a href="studio.html" class="next-link">
-        <span class="menu-num">5</span>
-        <span class="next-text">
-          <span class="next-kicker">Weiter</span>
-          <span class="menu-label">Studio</span>
-        </span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <div class="footer-meta">
-        <a href="index.html" aria-label="Zur Startseite"><img src="assets/logos/nageltante_logo.svg" alt="Nageltante" width="1000" height="266"></a>
-        <nav>
-          <a href="#" data-instagram>Instagram</a>
-          <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a>
-          <span>©<span data-year></span> Nageltante</span>
-        </nav>
-      </div>
-    </footer>
-
-  </div>
-
-  <script src="js/site.js?v=202611141214"></script>
-</body>
-</html>

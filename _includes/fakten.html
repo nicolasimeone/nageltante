@@ -1,0 +1,16 @@
+        <div class="facts">
+          <div>
+            <h3>Adresse</h3>
+            <p>Nageltante<br>{{ a.strasse | escape }}<br>{{ a.ort | escape }}</p>
+          </div>
+          <div>
+            <h3>Öffnungszeiten</h3>
+            <p>{% for z in a.oeffnungszeiten %}{{ z | escape }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</p>
+          </div>
+          <div>
+            <h3>Kontakt</h3>
+            <p><a href="tel:{{ a.telefon | remove: ' ' }}">{{ a.telefon | escape }}</a><br>
+            <a href="mailto:{{ a.email }}">{{ a.email | escape }}</a><br>
+            <a href="#" data-instagram>Instagram</a></p>
+          </div>
+        </div>

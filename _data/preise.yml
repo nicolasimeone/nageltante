@@ -1,0 +1,19 @@
+titel: Preise
+intro: Alle Preise in CHF. Nail Art und Extras rechnen wir nach Aufwand ab.
+gruppen:
+  - titel: Hände
+    eintraege:
+      - { name: Maniküre, beschreibung: "[Form, Pflege, Nagelhaut]", preis: "CHF —" }
+      - { name: Neumodellage Gel, beschreibung: "[inkl. Farbe]", preis: "CHF —" }
+      - { name: Auffüllen, beschreibung: "[nach 3–4 Wochen]", preis: "CHF —" }
+      - { name: Shellac / Gel-Lack, beschreibung: "", preis: "CHF —" }
+      - { name: Ablösen, beschreibung: "", preis: "CHF —" }
+  - titel: Füsse
+    eintraege:
+      - { name: Pediküre, beschreibung: "[Fussbad, Pflege, Lack]", preis: "CHF —" }
+      - { name: Gel-Lack Füsse, beschreibung: "", preis: "CHF —" }
+  - titel: Extras
+    eintraege:
+      - { name: Nail Art, beschreibung: "[pro Nagel / Set]", preis: "ab CHF —" }
+      - { name: French, beschreibung: "", preis: "CHF —" }
+      - { name: Reparatur, beschreibung: "[pro Nagel]", preis: "CHF —" }

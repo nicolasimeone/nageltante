@@ -1,87 +1,21 @@
-<!DOCTYPE html>
-<html lang="de-CH" class="is-loading is-sub">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Termin — Nageltante</title>
-  <meta name="description" content="Termin – Nageltante Nagelstudio.">
-  <meta name="theme-color" content="#f7f6f4">
-  <script>try{if(sessionStorage.getItem("nt_seen"))document.documentElement.classList.remove("is-loading")}catch(e){}</script>
-  <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
-  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=202611141214">
-</head>
-<body>
-
-  <!-- Ladescreen -->
-  <div class="loader" aria-hidden="true">
-    <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" class="loader-emblem" width="71" height="57">
-  </div>
-
-  <div class="page">
-
-    <header class="page-header">
-      <a href="index.html" class="home-link" aria-label="Zur Startseite">
-        <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" width="71" height="57">
-        <span>Nageltante</span>
-      </a>
-      <div class="page-header-right">
-        <a href="index.html" class="menu-link">Menü</a>
-        <a href="#" class="btn btn-dark" data-booking>Termin buchen</a>
-      </div>
-    </header>
-
-    <main>
-      <section class="page-hero">
-        <span class="page-num">3</span>
-        <h1>Termin</h1>
-        <p class="intro">Termine buchst du ganz einfach online – rund um die Uhr.</p>
-      </section>
-
+---
+layout: seite
+nummer: 3
+daten: termin
+---
+{% assign a = site.data.allgemein %}{% assign d = site.data[page.daten] %}
     <section class="block">
       <h2 class="block-label">Online buchen</h2>
       <div class="block-body">
-        <p class="lead">Wähle Behandlung, Nageltante und Zeit – fertig.</p>
-        <p><a href="#" class="btn" data-booking>Termin buchen ↗</a></p>
+        <p class="lead">{{ d.gross | escape }}</p>
+        <p><a href="#" class="btn" data-booking>{{ d.button | escape }} ↗</a></p>
       </div>
     </section>
-
     <section class="block">
       <h2 class="block-label">Gut zu wissen</h2>
       <div class="block-body">
-        <ul class="list">
-          <li>[Bitte komm ohne Lack oder sag uns vorher Bescheid, falls etwas abgelöst werden muss.]</li>
-          <li>[Absagen bitte mindestens 24 Stunden vorher, sonst verrechnen wir den Termin.]</li>
-          <li>[Bei Verspätung über 15 Minuten müssen wir den Termin evtl. kürzen.]</li>
+        <ul class="list">{% for p in d.hinweise %}
+          <li>{{ p | escape }}</li>{% endfor %}
         </ul>
       </div>
     </section>
-
-    </main>
-
-    <footer class="page-footer">
-      <a href="team.html" class="next-link">
-        <span class="menu-num">4</span>
-        <span class="next-text">
-          <span class="next-kicker">Weiter</span>
-          <span class="menu-label">Team</span>
-        </span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <div class="footer-meta">
-        <a href="index.html" aria-label="Zur Startseite"><img src="assets/logos/nageltante_logo.svg" alt="Nageltante" width="1000" height="266"></a>
-        <nav>
-          <a href="#" data-instagram>Instagram</a>
-          <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a>
-          <span>©<span data-year></span> Nageltante</span>
-        </nav>
-      </div>
-    </footer>
-
-  </div>
-
-  <script src="js/site.js?v=202611141214"></script>
-</body>
-</html>

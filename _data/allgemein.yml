@@ -1,0 +1,13 @@
+strasse: "[Strasse Nr.]"
+ort: "[PLZ Ort]"
+telefon: "+41 00 000 00 00"
+email: hallo@nageltante.ch
+termin_link: ""
+instagram_link: ""
+maps_link: "https://maps.google.com/?q=Nageltante"
+oeffnungszeiten:
+  - "[Di–Fr 09–19 Uhr]"
+  - "[Sa 09–15 Uhr]"
+  - "[So–Mo geschlossen]"
+fusszeile: "*Nagelstudio"
+beschreibung: "Nageltante – ehrliches Handwerk, Ästhetik ohne Kitsch."

@@ -1,68 +1,19 @@
-<!DOCTYPE html>
-<html lang="de-CH" class="is-loading is-home">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Nageltante — Nagelstudio</title>
-  <meta name="description" content="Nageltante – ehrliches Handwerk, Ästhetik ohne Kitsch.">
-  <meta name="theme-color" content="#f7f6f4">
-  <script>try{if(sessionStorage.getItem("nt_seen"))document.documentElement.classList.remove("is-loading")}catch(e){}</script>
-  <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
-  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=202611141214">
-</head>
-<body>
-
-  <!-- Ladescreen -->
-  <div class="loader" aria-hidden="true">
-    <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" class="loader-emblem" width="71" height="57">
-  </div>
-
+---
+layout: default
+---
+{% assign a = site.data.allgemein %}
+{% assign slugs = "ueber-uns,preise,termin,team,studio,werde-nageltante,geschenkkarte,kontakt" | split: "," %}
   <main class="home">
 
-    <!-- Navigation links -->
+    <!-- Navigation -->
     <nav class="menu" aria-label="Hauptnavigation">
-      <a class="menu-item" href="ueber-uns.html">
-        <span class="menu-num">1</span>
-        <span class="menu-label">Über uns</span>
+{% for slug in slugs %}{% assign key = slug | replace: "-", "_" %}
+      <a class="menu-item" href="{{ slug }}.html">
+        <span class="menu-num">{{ forloop.index }}</span>
+        <span class="menu-label">{{ site.data[key].titel | escape }}</span>
         <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="menu-item" href="preise.html">
-        <span class="menu-num">2</span>
-        <span class="menu-label">Preise</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="termin.html">
-        <span class="menu-num">3</span>
-        <span class="menu-label">Termin</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="team.html">
-        <span class="menu-num">4</span>
-        <span class="menu-label">Team</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="studio.html">
-        <span class="menu-num">5</span>
-        <span class="menu-label">Studio</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="werde-nageltante.html">
-        <span class="menu-num">6</span>
-        <span class="menu-label">Werde Nageltante</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="geschenkkarte.html">
-        <span class="menu-num">7</span>
-        <span class="menu-label">Geschenkkarte</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="menu-item" href="kontakt.html">
-        <span class="menu-num">8</span>
-        <span class="menu-label">Kontakt</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+{% endfor %}
     </nav>
 
     <!-- Info-Panel -->
@@ -72,8 +23,8 @@
           <img src="assets/logos/nageltante_logo.svg" alt="Nageltante" width="1000" height="266">
         </h1>
         <div class="contact-lines">
-          <address>[Strasse Nr.], [PLZ Ort]</address>
-          <a href="tel:+41000000000">+41 00 000 00 00</a>
+          <address>{{ a.strasse | escape }}, {{ a.ort | escape }}</address>
+          <a href="tel:{{ a.telefon | remove: ' ' }}">{{ a.telefon | escape }}</a>
         </div>
       </div>
 
@@ -110,14 +61,10 @@
       </div>
 
       <div class="panel-bottom">
-        <span>*Nagelstudio</span>
+        <span>{{ a.fusszeile | escape }}</span>
         <span>©<span data-year></span> Alle Rechte vorbehalten</span>
       </div>
     </aside>
 
   </main>
   <div class="edge-tint" aria-hidden="true"></div>
-
-  <script src="js/site.js?v=202611141214"></script>
-</body>
-</html>

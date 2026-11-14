@@ -295,7 +295,8 @@ html.is-loading .page { opacity: 0; }
   display: grid; place-items: center;
 }
 .member .media video { width: 100%; height: 100%; object-fit: cover; }
-.member .media img.fallback { width: 28%; opacity: .25; }
+.member .media img { width: 100%; height: 100%; object-fit: cover; }
+.member .media img.fallback { width: 28%; height: auto; opacity: .25; }
 .member h3 { font-size: var(--fs-l); font-weight: 400; letter-spacing: -.01em; }
 .member .role { font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .06em; margin: .25rem 0 .75rem; }
 .member p { color: var(--muted); }
@@ -308,6 +309,8 @@ html.is-loading .page { opacity: 0; }
   font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .06em;
 }
 .gallery .ph:nth-child(3n+2) { aspect-ratio: 4 / 5; background: #fbd8ec; }
+
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; }
 
 /* Beträge (Geschenkkarte) */
 .chips { display: flex; flex-wrap: wrap; gap: .75rem; }

@@ -1,0 +1,6 @@
+# nageltante.ch – wird von GitHub Pages automatisch gebaut (Jekyll)
+title: Nageltante
+lang: de-CH
+exclude:
+  - README.md
+  - .pages.yml

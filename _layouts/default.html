@@ -1,0 +1,26 @@
+{% assign a = site.data.allgemein %}{% assign d = site.data[page.daten] %}<!DOCTYPE html>
+<html lang="de-CH" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% if d %}{{ d.titel | escape }} — Nageltante{% else %}Nageltante — Nagelstudio{% endif %}</title>
+  <meta name="description" content="{% if d %}{{ d.intro | escape }}{% else %}{{ a.beschreibung | escape }}{% endif %}">
+  <meta name="theme-color" content="#f7f6f4">
+  <script>try{if(sessionStorage.getItem("nt_seen"))document.documentElement.classList.remove("is-loading")}catch(e){}</script>
+  <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v={{ site.time | date: '%s' }}">
+</head>
+<body data-booking-url="{{ a.termin_link | escape }}" data-instagram-url="{{ a.instagram_link | escape }}">
+
+  <!-- Ladescreen -->
+  <div class="loader" aria-hidden="true">
+    <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" class="loader-emblem" width="71" height="57">
+  </div>
+
+{{ content }}
+
+  <script src="js/site.js?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

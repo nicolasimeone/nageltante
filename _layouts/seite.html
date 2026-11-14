@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{% assign a = site.data.allgemein %}{% assign d = site.data[page.daten] %}
+{% assign slugs = "ueber-uns,preise,termin,team,studio,werde-nageltante,geschenkkarte,kontakt" | split: "," %}
+{% assign n = page.nummer | modulo: slugs.size %}{% assign next_slug = slugs[n] %}{% assign next_key = next_slug | replace: "-", "_" %}{% assign nd = site.data[next_key] %}
+  <div class="page">
+
+    <header class="page-header">
+      <a href="./" class="home-link" aria-label="Zur Startseite">
+        <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" width="71" height="57">
+        <span>Nageltante</span>
+      </a>
+      <div class="page-header-right">
+        <a href="./" class="menu-link">Menü</a>
+        <a href="#" class="btn btn-dark" data-booking>Termin buchen</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="page-num">{{ page.nummer }}</span>
+        <h1>{{ d.titel | escape }}</h1>
+        <p class="intro">{{ d.intro | escape }}</p>
+      </section>
+{{ content }}
+    </main>
+
+    <footer class="page-footer">
+      <a href="{{ next_slug }}.html" class="next-link">
+        <span class="menu-num">{{ n | plus: 1 }}</span>
+        <span class="next-text">
+          <span class="next-kicker">Weiter</span>
+          <span class="menu-label">{{ nd.titel | escape }}</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <div class="footer-meta">
+        <a href="./" aria-label="Zur Startseite"><img src="assets/logos/nageltante_logo.svg" alt="Nageltante" width="1000" height="266"></a>
+        <nav>
+          <a href="#" data-instagram>Instagram</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <span>©<span data-year></span> Nageltante</span>
+        </nav>
+      </div>
+    </footer>
+
+  </div>

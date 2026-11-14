@@ -1,8 +1,9 @@
 // ==========================================================
-// Nageltante – zentrale Einstellungen
+// Nageltante – Links und Ladescreen
 // ==========================================================
-const BOOKING_URL = "#";    // Hairlist-Link, z.B. https://xyz.hairlist.ch
-const INSTAGRAM_URL = "#";  // z.B. https://instagram.com/nageltante
+// Hairlist- und Instagram-Link kommen aus den Inhalten («Allgemein» im CMS)
+const BOOKING_URL = document.body.dataset.bookingUrl || "#";
+const INSTAGRAM_URL = document.body.dataset.instagramUrl || "#";
 
 (function () {
   function setLink(selector, url) {
