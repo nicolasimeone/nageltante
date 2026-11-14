@@ -409,3 +409,66 @@ html.is-loading .page { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before { transition: none !important; animation: none !important; }
 }
+
+/* ==========================================================
+   Feinschliff: iPhone / «Apple-like»
+   ========================================================== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* Weicher Übergang beim Seitenwechsel (Safari 18.2+, Chrome) */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .35s; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+
+/* Menüzeilen gleiten nacheinander rein */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+html:not(.is-loading) .home .menu-item > * { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+html:not(.is-loading) .home .menu-item:nth-child(2) > * { animation-delay: .04s; }
+html:not(.is-loading) .home .menu-item:nth-child(3) > * { animation-delay: .08s; }
+html:not(.is-loading) .home .menu-item:nth-child(4) > * { animation-delay: .12s; }
+html:not(.is-loading) .home .menu-item:nth-child(5) > * { animation-delay: .16s; }
+html:not(.is-loading) .home .menu-item:nth-child(6) > * { animation-delay: .20s; }
+html:not(.is-loading) .home .menu-item:nth-child(7) > * { animation-delay: .24s; }
+html:not(.is-loading) .home .menu-item:nth-child(8) > * { animation-delay: .28s; }
+html:not(.is-loading) .home .panel > * { animation: rise .8s cubic-bezier(.2, .8, .2, 1) .2s both; }
+
+/* Kopfzeile der Unterseiten: Milchglas */
+.page-header {
+  background: rgba(247, 246, 244, .72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom-color: rgba(29, 29, 27, .14);
+}
+.btn { transition: background .3s, color .3s, transform .2s cubic-bezier(.2, .8, .2, 1); }
+.btn:active { transform: scale(.96); }
+.member .media, .gallery .ph { border-radius: 18px; }
+
+/* Touch-Geräte: kein «klebender» Hover, dafür direktes Feedback beim Antippen */
+@media (hover: none) {
+  .menu-item:hover::before { transform: translateY(101%); }
+  .menu-item:hover .menu-arrow,
+  .next-link:hover .menu-arrow { background: none; color: inherit; transform: none; }
+  .next-link:hover .menu-label { transform: none; }
+  .btn:hover { background: var(--pink); color: var(--dark); }
+  .btn-dark:hover { background: var(--dark); color: var(--pink); }
+
+  .menu-item::before { transition-duration: .2s; }
+  .menu-item:active::before { transform: translateY(0); }
+  .menu-item:active .menu-arrow,
+  .next-link:active .menu-arrow { background: var(--dark); color: var(--pink); transform: rotate(-45deg); }
+  .next-link:active { background: #fbb4dd; }
+}
+
+/* iPhone: Bereich unter der Safari-Leiste rosa statt hell (nur Startseite) */
+.edge-tint { display: none; }
+@media (max-width: 900px) {
+  .edge-tint { display: block; position: fixed; left: 0; right: 0; bottom: 0; height: 6px; background: var(--pink); pointer-events: none; }
+  .page-header { padding-top: calc(.8rem + env(safe-area-inset-top)); }
+  .page-header .btn { padding: .55em 1.1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  @view-transition { navigation: none; }
+}
