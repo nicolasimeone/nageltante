@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nageltante — Nagelstudio</title>
+  <meta name="description" content="Nageltante – ehrliches Handwerk, Ästhetik ohne Kitsch.">
+  <meta name="theme-color" content="#f7f6f4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="home">
+
+    <!-- Navigation links -->
+    <nav class="menu" aria-label="Hauptnavigation">
+      <a class="menu-item" href="#" data-booking>
+        <span class="menu-num">1</span>
+        <span class="menu-label">Termin</span>
+        <span class="menu-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="menu-item" href="angebot.html">
+        <span class="menu-num">2</span>
+        <span class="menu-label">Angebot</span>
+        <span class="menu-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="menu-item" href="team.html">
+        <span class="menu-num">3</span>
+        <span class="menu-label">Team</span>
+        <span class="menu-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="menu-item" href="werde-nageltante.html">
+        <span class="menu-num">4</span>
+        <span class="menu-label">Werde Nageltante</span>
+        <span class="menu-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="menu-item" href="kontakt.html">
+        <span class="menu-num">5</span>
+        <span class="menu-label">Kontakt</span>
+        <span class="menu-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </nav>
+
+    <!-- Info-Panel rechts -->
+    <aside class="panel">
+      <div class="panel-top">
+        <h1 class="brand">NAGEL<span>TANTE</span><sup>°</sup></h1>
+        <address class="address">
+          [Strasse Nr.],<br>[PLZ Ort]
+        </address>
+        <p class="phone"><a href="tel:+41000000000">+41 00 000 00 00</a></p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info">
+          <span class="info-key">A</span>
+          <div>
+            <h2>Termin</h2>
+            <a href="#" data-booking>Online buchen</a>
+          </div>
+        </div>
+        <div class="info">
+          <span class="info-key">B</span>
+          <div>
+            <h2>Karriere</h2>
+            <a href="werde-nageltante.html">Werde Nageltante</a>
+          </div>
+        </div>
+        <div class="info">
+          <span class="info-key">C</span>
+          <div>
+            <h2>Social</h2>
+            <a href="#" data-instagram>Instagram</a>
+          </div>
+        </div>
+        <div class="info">
+          <span class="info-key">D</span>
+          <div>
+            <h2>Rechtliches</h2>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-bottom">
+        <p class="copyright">©<span data-year></span></p>
+        <div class="panel-meta">
+          <span>*Nagelstudio</span>
+          <span>Alle Rechte vorbehalten</span>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+    // Zentrale Links – hier anpassen
+    const BOOKING_URL = "#";    // z.B. https://xyz.hairlist.ch
+    const INSTAGRAM_URL = "#";  // z.B. https://instagram.com/nageltante
+
+    function setLink(selector, url) {
+      document.querySelectorAll(selector).forEach(a => {
+        a.href = url;
+        if (url !== "#") { a.target = "_blank"; a.rel = "noopener"; }
+      });
+    }
+    setLink("[data-booking]", BOOKING_URL);
+    setLink("[data-instagram]", INSTAGRAM_URL);
+    document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+</body>
+</html>
