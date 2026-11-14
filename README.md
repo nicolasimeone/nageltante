@@ -12,7 +12,9 @@ werde-nageltante.html   Unterseite (folgt)
 kontakt.html            Unterseite (folgt)
 impressum.html          Rechtliches (folgt)
 datenschutz.html        Rechtliches (folgt)
-css/style.css           Design (Farben und Schrift oben in :root)
+css/style.css           Design (Farben, Schrift, 4 Schriftgrössen oben in :root)
+assets/fonts/           Hausschrift Neue Haas Grotesk Display (woff2 + ttf)
+assets/logos/           Logos und Emblem (SVG)
 assets/videos/          Team-Videos (meli.mp4, nanji.mp4, yoshi.mp4)
 assets/images/          Bilder, Vorschaubilder für Videos
 ```

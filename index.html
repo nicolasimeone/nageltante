@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang="de-CH" class="is-loading">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Nageltante — Nagelstudio</title>
   <meta name="description" content="Nageltante – ehrliches Handwerk, Ästhetik ohne Kitsch.">
   <meta name="theme-color" content="#f7f6f4">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <!-- Ladescreen -->
+  <div class="loader" aria-hidden="true">
+    <img src="assets/logos/nageltante_emblem_positiv.svg" alt="" class="loader-emblem" width="71" height="57">
+  </div>
+
   <main class="home">
 
     <!-- Navigation links -->
@@ -19,48 +25,40 @@
       <a class="menu-item" href="#" data-booking>
         <span class="menu-num">1</span>
         <span class="menu-label">Termin</span>
-        <span class="menu-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="menu-item" href="angebot.html">
         <span class="menu-num">2</span>
         <span class="menu-label">Angebot</span>
-        <span class="menu-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="menu-item" href="team.html">
         <span class="menu-num">3</span>
         <span class="menu-label">Team</span>
-        <span class="menu-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="menu-item" href="werde-nageltante.html">
         <span class="menu-num">4</span>
         <span class="menu-label">Werde Nageltante</span>
-        <span class="menu-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="menu-item" href="kontakt.html">
         <span class="menu-num">5</span>
         <span class="menu-label">Kontakt</span>
-        <span class="menu-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </nav>
 
     <!-- Info-Panel rechts -->
     <aside class="panel">
       <div class="panel-top">
-        <h1 class="brand">NAGEL<span>TANTE</span><sup>°</sup></h1>
-        <address class="address">
-          [Strasse Nr.],<br>[PLZ Ort]
-        </address>
-        <p class="phone"><a href="tel:+41000000000">+41 00 000 00 00</a></p>
+        <h1 class="brand">
+          <img src="assets/logos/nageltante_logo_outline_negativ.svg" alt="Nageltante" width="1000" height="266">
+        </h1>
+        <div class="contact-lines">
+          <address>[Strasse Nr.], [PLZ Ort]</address>
+          <a href="tel:+41000000000">+41 00 000 00 00</a>
+        </div>
       </div>
 
       <div class="info-grid">
@@ -96,11 +94,8 @@
       </div>
 
       <div class="panel-bottom">
-        <p class="copyright">©<span data-year></span></p>
-        <div class="panel-meta">
-          <span>*Nagelstudio</span>
-          <span>Alle Rechte vorbehalten</span>
-        </div>
+        <span>*Nagelstudio</span>
+        <span>©<span data-year></span> Alle Rechte vorbehalten</span>
       </div>
     </aside>
 
@@ -120,6 +115,17 @@
     setLink("[data-booking]", BOOKING_URL);
     setLink("[data-instagram]", INSTAGRAM_URL);
     document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+
+    // Ladescreen: wartet auf Seite + Schrift, zeigt sich mind. 700 ms, höchstens 4 s
+    (function () {
+      const root = document.documentElement;
+      const minTime = new Promise(r => setTimeout(r, 700));
+      const loaded = new Promise(r => window.addEventListener("load", r, { once: true }));
+      const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+      const done = () => root.classList.remove("is-loading");
+      Promise.all([minTime, loaded, fonts]).then(done);
+      setTimeout(done, 4000);
+    })();
   </script>
 </body>
 </html>
