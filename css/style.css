@@ -26,7 +26,7 @@
   --font: "Neue Haas Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Genau 4 Schriftgrössen */
-  --fs-xl: clamp(2rem, 3.7vw, 5rem);       /* Menü */
+  --fs-xl: clamp(1.75rem, min(3.7vw, 6.2vh), 5rem);  /* Menü, Seitentitel */
   --fs-l:  clamp(1.35rem, 1.9vw, 2.1rem);  /* Panel-Titel, Adresse */
   --fs-m:  1.0625rem;                      /* Links, Text */
   --fs-s:  .8125rem;                       /* Nummern, Kreise, Fusszeile */
@@ -66,8 +66,9 @@ html:not(.is-loading) .loader { opacity: 0; visibility: hidden; }
 html.is-loading body { overflow: hidden; }
 
 /* Inhalt leicht einblenden, sobald der Loader weg ist */
-.home { transition: opacity .6s var(--ease) .1s; }
-html.is-loading .home { opacity: 0; }
+.home, .page { transition: opacity .6s var(--ease) .1s; }
+html.is-loading .home,
+html.is-loading .page { opacity: 0; }
 
 /* ---------- Layout ---------- */
 .home {
@@ -80,7 +81,7 @@ html.is-loading .home { opacity: 0; }
 /* ---------- Menü ---------- */
 .menu {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   min-height: 0;
 }
 .menu-item {
@@ -109,7 +110,7 @@ html.is-loading .home { opacity: 0; }
 
 .menu-num {
   align-self: start;
-  padding-top: clamp(.75rem, 2.2vh, 1.5rem);
+  padding-top: clamp(.5rem, 1.6vh, 1.1rem);
   font-size: var(--fs-s);
 }
 .menu-label {
@@ -122,7 +123,7 @@ html.is-loading .home { opacity: 0; }
 .menu-item:hover .menu-label { transform: translateX(.5rem); }
 
 .menu-arrow {
-  width: clamp(2.5rem, 4.2vw, 4.75rem);
+  width: clamp(2.25rem, min(3.6vw, 6.4vh), 4.25rem);
   aspect-ratio: 1;
   border: 1px solid currentColor;
   border-radius: 50%;
@@ -198,10 +199,157 @@ html.is-loading .home { opacity: 0; }
   letter-spacing: .03em;
 }
 
+/* ==========================================================
+   Unterseiten
+   ========================================================== */
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.page-header {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1rem var(--pad-x) 1rem clamp(1.25rem, 2.5vw, 3rem);
+  background: var(--light);
+  border-bottom: 1px solid var(--dark);
+}
+.home-link { display: flex; align-items: center; gap: .7rem; }
+.home-link img { width: 2.1rem; }
+.page-header-right { display: flex; align-items: center; gap: 1.5rem; }
+.menu-link { display: flex; align-items: center; gap: .5rem; }
+.menu-link::before { content: "←"; transition: transform .3s var(--ease); }
+.menu-link:hover::before { transform: translateX(-.25rem); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .7em 1.4em;
+  background: var(--pink); color: var(--dark);
+  border: 1px solid var(--dark);
+  border-radius: 999px;
+  transition: background .3s, color .3s;
+}
+.btn:hover { background: var(--dark); color: var(--pink); }
+.btn-dark { background: var(--dark); color: var(--pink); }
+.btn-dark:hover { background: var(--pink); color: var(--dark); }
+
+.page-hero {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 7vw, 7.5rem) minmax(0, 1fr);
+  column-gap: 1.25rem;
+  padding: clamp(3rem, 10vh, 7rem) var(--pad-x) clamp(2.5rem, 7vh, 5rem) clamp(1.25rem, 2.5vw, 3rem);
+  border-bottom: 1px solid var(--dark);
+}
+.page-num { font-size: var(--fs-s); padding-top: .6rem; }
+.page-hero h1 {
+  font-size: calc(var(--fs-xl) * 1); /* gleiche Grösse wie das Menü */
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1;
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+.intro { grid-column: 2; font-size: var(--fs-l); line-height: 1.25; letter-spacing: -.01em; max-width: 30ch; }
+.page-hero > h1 { grid-column: 2; }
+
+.block {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 7vw, 7.5rem) minmax(0, 1fr) minmax(0, 2fr);
+  column-gap: 1.25rem;
+  padding: clamp(2.5rem, 7vh, 5rem) var(--pad-x) clamp(2.5rem, 7vh, 5rem) clamp(1.25rem, 2.5vw, 3rem);
+  border-bottom: 1px solid var(--dark);
+}
+.block-label {
+  grid-column: 2;
+  font-size: var(--fs-s); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .06em;
+  padding-top: .35rem;
+}
+.block-body { grid-column: 3; }
+.block-body > * + * { margin-top: 1.25rem; }
+.block-body p { max-width: 60ch; }
+.block-body .lead { font-size: var(--fs-l); line-height: 1.25; letter-spacing: -.01em; max-width: 32ch; }
+.muted { color: var(--muted); }
+.placeholder { color: var(--muted); }
+
+/* Liste mit Nummern (Preise, Angebote) */
+.rows { list-style: none; border-top: 1px solid var(--dark); }
+.rows li {
+  display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  align-items: baseline; gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--dark);
+}
+.rows .r-num { font-size: var(--fs-s); }
+.rows .r-name { font-size: var(--fs-l); letter-spacing: -.01em; }
+.rows .r-name small { display: block; font-size: var(--fs-m); color: var(--muted); letter-spacing: 0; margin-top: .2rem; }
+.rows .r-price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Fakten: Adresse, Zeiten, Kontakt */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 2rem; }
+.facts h3 { font-size: var(--fs-s); font-weight: 400; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .6rem; }
+.facts a { border-bottom: 1px solid transparent; transition: border-color .2s; }
+.facts a:hover { border-color: currentColor; }
+
+/* Team */
+.team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+.member .media {
+  aspect-ratio: 1; overflow: hidden; border-radius: 4px;
+  background: var(--pink); margin-bottom: 1.1rem;
+  display: grid; place-items: center;
+}
+.member .media video { width: 100%; height: 100%; object-fit: cover; }
+.member .media img.fallback { width: 28%; opacity: .25; }
+.member h3 { font-size: var(--fs-l); font-weight: 400; letter-spacing: -.01em; }
+.member .role { font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .06em; margin: .25rem 0 .75rem; }
+.member p { color: var(--muted); }
+
+/* Bilder-Raster (Studio) */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.75rem, 1.5vw, 1.25rem); }
+.gallery .ph {
+  aspect-ratio: 4 / 5; border-radius: 4px; background: var(--pink);
+  display: grid; place-items: center;
+  font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .06em;
+}
+.gallery .ph:nth-child(3n+2) { aspect-ratio: 4 / 5; background: #fbd8ec; }
+
+/* Beträge (Geschenkkarte) */
+.chips { display: flex; flex-wrap: wrap; gap: .75rem; }
+.chips span {
+  font-size: var(--fs-l); letter-spacing: -.01em;
+  padding: .35em 1em; border: 1px solid var(--dark); border-radius: 999px;
+}
+
+/* Aufzählung */
+.list { list-style: none; }
+.list li { padding: .7rem 0; border-bottom: 1px solid var(--dark); display: flex; gap: 1rem; }
+.list li:first-child { border-top: 1px solid var(--dark); }
+.list li::before { content: "*"; }
+
+/* Fusszeile Unterseiten */
+.page-footer { margin-top: auto; background: var(--pink); }
+.next-link {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 7vw, 7.5rem) minmax(0, 1fr) auto;
+  column-gap: 1.25rem; align-items: center;
+  padding: clamp(2.5rem, 8vh, 5rem) var(--pad-x) clamp(2.5rem, 8vh, 5rem) clamp(1.25rem, 2.5vw, 3rem);
+  border-bottom: 1px solid var(--dark);
+}
+.next-link .menu-num { align-self: start; padding-top: .6rem; }
+.next-link .next-text { display: flex; flex-direction: column; gap: .5rem; }
+.next-link .next-kicker { font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .06em; }
+.next-link .menu-label { white-space: normal; transition: transform .45s var(--ease); }
+.next-link:hover .menu-label { transform: translateX(.5rem); }
+.next-link:hover .menu-arrow { background: var(--dark); color: var(--pink); transform: rotate(-45deg); }
+.footer-meta {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap;
+  padding: clamp(1.5rem, 4vh, 2.5rem) var(--pad-x) clamp(1.25rem, 3vh, 2rem) clamp(1.25rem, 2.5vw, 3rem);
+  font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .03em;
+}
+.footer-meta img { width: clamp(9rem, 16vw, 13rem); }
+.footer-meta nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.footer-meta a:hover { text-decoration: underline; }
+
 /* ---------- Handy & Tablet: alles auf einem Screen ---------- */
 @media (max-width: 900px) {
   :root {
-    --fs-xl: clamp(1.6rem, min(8.4vw, 4.6vh), 3rem);
+    --fs-xl: clamp(1.25rem, min(8vw, 3.6vh), 2.6rem);
     --fs-l:  clamp(1rem, 2.4vh, 1.25rem);
     --fs-m:  clamp(.8125rem, 1.8vh, .9375rem);
     --fs-s:  .6875rem;
@@ -217,7 +365,7 @@ html.is-loading .home { opacity: 0; }
     padding: 0 var(--pad-x);
   }
   .menu-num { padding-top: 0; align-self: center; }
-  .menu-arrow { width: clamp(2rem, 5.5vh, 2.75rem); }
+  .menu-arrow { width: clamp(1.6rem, 4.6vh, 2.5rem); }
   .menu-item:hover .menu-label { transform: none; }
 
   .panel { padding: clamp(1rem, 2.6vh, 1.75rem) var(--pad-x) max(clamp(.75rem, 1.8vh, 1.25rem), env(safe-area-inset-bottom)); }
@@ -233,11 +381,29 @@ html.is-loading .home { opacity: 0; }
   .panel-bottom { padding-top: clamp(.6rem, 1.5vh, 1rem); }
 }
 
+
+/* Unterseiten auf Handy */
+@media (max-width: 900px) {
+  .page { --fs-xl: clamp(2rem, 10vw, 3rem); --fs-l: 1.25rem; --fs-m: 1rem; --fs-s: .75rem; }
+  .page-header { padding: .8rem var(--pad-x); }
+  .page-header .home-link span { display: none; }
+  .page-header-right { gap: 1rem; }
+  .page-hero, .block, .next-link { grid-template-columns: 1fr; padding-left: var(--pad-x); }
+  .page-hero > *, .page-hero > h1, .intro, .block-label, .block-body { grid-column: 1; }
+  .page-num { padding: 0 0 .75rem; }
+  .block-label { padding: 0 0 1rem; }
+  .team, .gallery { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .next-link { grid-template-columns: minmax(0, 1fr) auto; }
+  .next-link .menu-num { display: none; }
+  .footer-meta { padding-left: var(--pad-x); flex-direction: column; align-items: flex-start; }
+}
+
 /* Sehr niedrige Screens (Handy quer): scrollen erlauben */
 @media (max-height: 520px) {
   .home { height: auto; min-height: 100dvh; }
-  .menu { grid-template-rows: none; }
-  .menu-item { min-height: 4.5rem; }
+  .home .menu { grid-template-rows: none; }
+  .home .menu-item { min-height: 3.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

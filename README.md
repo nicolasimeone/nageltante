@@ -6,13 +6,16 @@ Statische Website, kein Build-Schritt. Läuft direkt auf GitHub Pages.
 
 ```
 index.html              Startseite (Menü links, Info-Panel rechts)
-angebot.html            Unterseite (folgt)
-team.html               Unterseite mit Team-Videos (folgt)
-werde-nageltante.html   Unterseite (folgt)
-kontakt.html            Unterseite (folgt)
-impressum.html          Rechtliches (folgt)
-datenschutz.html        Rechtliches (folgt)
+ueber-uns.html          1 Über uns
+preise.html             2 Preise
+termin.html             3 Termin
+team.html               4 Team (Videos)
+studio.html             5 Studio
+werde-nageltante.html   6 Werde Nageltante
+geschenkkarte.html      7 Geschenkkarte
+kontakt.html            8 Kontakt
 css/style.css           Design (Farben, Schrift, 4 Schriftgrössen oben in :root)
+js/site.js              Hairlist- und Instagram-Link, Ladescreen
 assets/fonts/           Hausschrift Neue Haas Grotesk Display (woff2 + ttf)
 assets/logos/           Logos und Emblem (SVG)
 assets/videos/          Team-Videos (meli.mp4, nanji.mp4, yoshi.mp4)
@@ -21,7 +24,7 @@ assets/images/          Bilder, Vorschaubilder für Videos
 
 ## Anpassen
 
-- **Termin- und Instagram-Link:** unten in `index.html` bei `BOOKING_URL` und `INSTAGRAM_URL`.
+- **Termin- und Instagram-Link:** in `js/site.js` bei `BOOKING_URL` und `INSTAGRAM_URL` (gilt für alle Seiten).
 - **Adresse, Telefon:** in `index.html` im Bereich `panel-top`. Platzhalter stehen in `[eckigen Klammern]`.
 - **Farben, Schrift:** in `css/style.css` ganz oben.
 

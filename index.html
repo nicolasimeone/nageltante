@@ -6,6 +6,7 @@
   <title>Nageltante — Nagelstudio</title>
   <meta name="description" content="Nageltante – ehrliches Handwerk, Ästhetik ohne Kitsch.">
   <meta name="theme-color" content="#f7f6f4">
+  <script>try{if(sessionStorage.getItem("nt_seen"))document.documentElement.classList.remove("is-loading")}catch(e){}</script>
   <link rel="icon" href="assets/logos/nageltante_emblem_positiv.svg" type="image/svg+xml">
   <link rel="preload" href="assets/logos/nageltante_emblem_positiv.svg" as="image">
   <link rel="preload" href="assets/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,34 +23,49 @@
 
     <!-- Navigation links -->
     <nav class="menu" aria-label="Hauptnavigation">
-      <a class="menu-item" href="#" data-booking>
+      <a class="menu-item" href="ueber-uns.html">
         <span class="menu-num">1</span>
+        <span class="menu-label">Über uns</span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="menu-item" href="preise.html">
+        <span class="menu-num">2</span>
+        <span class="menu-label">Preise</span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="menu-item" href="termin.html">
+        <span class="menu-num">3</span>
         <span class="menu-label">Termin</span>
         <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="menu-item" href="angebot.html">
-        <span class="menu-num">2</span>
-        <span class="menu-label">Angebot</span>
-        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
       <a class="menu-item" href="team.html">
-        <span class="menu-num">3</span>
+        <span class="menu-num">4</span>
         <span class="menu-label">Team</span>
         <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
+      <a class="menu-item" href="studio.html">
+        <span class="menu-num">5</span>
+        <span class="menu-label">Studio</span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
       <a class="menu-item" href="werde-nageltante.html">
-        <span class="menu-num">4</span>
+        <span class="menu-num">6</span>
         <span class="menu-label">Werde Nageltante</span>
         <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
+      <a class="menu-item" href="geschenkkarte.html">
+        <span class="menu-num">7</span>
+        <span class="menu-label">Geschenkkarte</span>
+        <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
       <a class="menu-item" href="kontakt.html">
-        <span class="menu-num">5</span>
+        <span class="menu-num">8</span>
         <span class="menu-label">Kontakt</span>
         <span class="menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </nav>
 
-    <!-- Info-Panel rechts -->
+    <!-- Info-Panel -->
     <aside class="panel">
       <div class="panel-top">
         <h1 class="brand">
@@ -101,31 +117,6 @@
 
   </main>
 
-  <script>
-    // Zentrale Links – hier anpassen
-    const BOOKING_URL = "#";    // z.B. https://xyz.hairlist.ch
-    const INSTAGRAM_URL = "#";  // z.B. https://instagram.com/nageltante
-
-    function setLink(selector, url) {
-      document.querySelectorAll(selector).forEach(a => {
-        a.href = url;
-        if (url !== "#") { a.target = "_blank"; a.rel = "noopener"; }
-      });
-    }
-    setLink("[data-booking]", BOOKING_URL);
-    setLink("[data-instagram]", INSTAGRAM_URL);
-    document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
-
-    // Ladescreen: wartet auf Seite + Schrift, zeigt sich mind. 700 ms, höchstens 4 s
-    (function () {
-      const root = document.documentElement;
-      const minTime = new Promise(r => setTimeout(r, 700));
-      const loaded = new Promise(r => window.addEventListener("load", r, { once: true }));
-      const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
-      const done = () => root.classList.remove("is-loading");
-      Promise.all([minTime, loaded, fonts]).then(done);
-      setTimeout(done, 4000);
-    })();
-  </script>
+  <script src="js/site.js"></script>
 </body>
 </html>
